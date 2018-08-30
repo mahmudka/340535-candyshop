@@ -1,7 +1,7 @@
 # Личный проект «Кэндишоп» [![Build status][travis-image]][travis-url]
 
 * Студент: [Денис Ахраменко](https://up.htmlacademy.ru/javascript/15/user/340535).
-* Наставник: `Неизвестно`.
+* Наставник: `Нет Наставника`.
 
 ---
 
