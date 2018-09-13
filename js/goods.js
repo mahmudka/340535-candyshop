@@ -1,6 +1,6 @@
 'use strict';
 
-// Названия Товара
+// Названия Мороженного
 
 var NAMES = [
   'Чесночные сливки',
@@ -33,7 +33,7 @@ var NAMES = [
   'Острый язычок'
 ];
 
-// Ссылки на изображения
+// Картинки
 
 var PICTURES = [
   'img/cards/gum-cedar.jpg',
@@ -89,39 +89,44 @@ var CONTENTS = [
   'виллабаджо'
 ];
 
+// Количество товаров
+
+var COUNT = 26;
+var COUNT_BASKET = 3;
+
 // Функция генерации случайного числа в диапазоне от min до max
 
-var getRandomInt = function (min, max) {
+var getRandomlement = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-// Функция по получению случайного элемента массива
+// Функция получения случайного элемента массива
 
-var getRandomData = function (arr) {
+var getRandomArray = function (arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
   var data = arr[randomIndex];
   return data;
 };
 
-// Функция по созданию массива с объектами - товарами
+// Функция созданию массива из сгенерированных объектов
 
 var getGoodsList = function (goodsQuantity) {
   var goodsList = [];
   for (var i = 0; i < goodsQuantity; i++) {
     goodsList[i] = {
-      name: getRandomData(NAMES),
-      picture: getRandomData(PICTURES),
-      amount: getRandomInt(0, 21),
-      price: getRandomInt(100, 1501),
-      weight: getRandomInt(30, 301),
+      name: getRandomArray(NAMES),
+      picture: getRandomArray(PICTURES),
+      amount: getRandomlement(0, 21),
+      price: getRandomlement(100, 1501),
+      weight: getRandomlement(30, 301),
       rating: {
-        value: getRandomInt(1, 6),
-        number: getRandomInt(10, 901)
+        value: getRandomlement(1, 6),
+        number: getRandomlement(10, 901)
       },
       nutritionFacts: {
-        sugar: !!getRandomInt(0, 2),
-        energy: getRandomInt(70, 501),
-        contents: getRandomData(CONTENTS) + ', ' + getRandomData(CONTENTS) + ', ' + getRandomData(CONTENTS) + ', ' + getRandomData(CONTENTS)
+        sugar: !!getRandomlement(0, 2),
+        energy: getRandomlement(70, 501),
+        contents: getRandomArray(CONTENTS) + ', ' + getRandomArray(CONTENTS) + ', ' + getRandomArray(CONTENTS) + ', ' + getRandomArray(CONTENTS)
       }
     };
   }
@@ -129,9 +134,9 @@ var getGoodsList = function (goodsQuantity) {
   return goodsList;
 };
 
-// Создаем массив из 26 объектов товара
+// Создаем массив из необходимого количества  товаров
 
-var goods = getGoodsList(26);
+var goods = getGoodsList(COUNT);
 
 // Скрываем блок и текст Данные загружаются
 
@@ -225,16 +230,16 @@ catalogCardsContainer.appendChild(fragment);
 
 // Создаем массив товара, добавленного в корзину
 
-var goodsInCart = getGoodsList(3);
+var goodsInBasket = getGoodsList(COUNT_BASKET);
 
-var cart = document.querySelector('.goods__cards');
+var card = document.querySelector('.goods__cards');
 
-var cartTemplate = document.querySelector('#card-order')
+var cardTemplate = document.querySelector('#card-order')
   .content
   .querySelector('.goods_card');
 
-var renderCardInCart = function (good) {
-  var cardElement = cartTemplate.cloneNode(true);
+var renderCardInBasket = function (good) {
+  var cardElement = cardTemplate.cloneNode(true);
 
   cardElement.querySelector('.card-order__title').textContent = good.name;
 
@@ -252,15 +257,15 @@ var fragment2 = document.createDocumentFragment();
 
 // Вставляем во фрагмент элементы
 
-for (var j = 0; j < goodsInCart.length; j++) {
-  fragment2.appendChild(renderCardInCart(goodsInCart[j]));
+for (var j = 0; j < goodsInBasket.length; j++) {
+  fragment2.appendChild(renderCardInBasket(goodsInBasket[j]));
 }
 
 // Вставляем фрагмент
 
-cart.appendChild(fragment2);
+card.appendChild(fragment2);
 
-cart.classList.remove('goods__cards--empty');
+card.classList.remove('goods__cards--empty');
 
-var emptyCart = document.querySelector('.goods__card-empty');
-emptyCart.classList.add('visually-hidden');
+var emptyCard = document.querySelector('.goods__card-empty');
+emptyCard.classList.add('visually-hidden');
