@@ -277,6 +277,8 @@ catalogCards.addEventListener('click', function (evt) {
   target.classList.toggle('card__btn-favorite--selected');
 });
 
+// Закоментируем пока
+
 // var alertMessage = function () {
 //   var article = document.querySelector('.goods_card');
 //   card.classList.toggle('goods__cards--empty', article === null);
