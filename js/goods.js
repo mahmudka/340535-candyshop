@@ -277,6 +277,7 @@ catalogCards.addEventListener('click', function (evt) {
   target.classList.toggle('card__btn-favorite--selected');
 });
 
+
 // Закоментируем пока
 
 // var alertMessage = function () {
